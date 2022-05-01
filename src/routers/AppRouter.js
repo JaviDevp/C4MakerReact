@@ -1,14 +1,15 @@
 import { firebase } from '../firebase/firebase-config';
-import { BrowserRouter as Router, Switch, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import React, { useEffect, useState } from 'react';
 import { AuthRouter } from "./AuthRouter";
 import { useDispatch } from 'react-redux';
 import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
-import { LoginScreen } from '../components/auth/LoginScreen';
 import { PrivateRoute } from './PrivateRoute';
 import { HomeScreen } from '../components/HomeScreen';
+import { Board } from '../components/Board';
+import { SocketProvider } from '../context/SocketContext';
 
 
 export const AppRouter = () => {
@@ -55,6 +56,10 @@ export const AppRouter = () => {
                   <HomeScreen/>
                 </PrivateRoute>
               }
+          />
+          <Route
+              path="/diagram/:id"
+              element={<Board/>}
           />
           
         </Routes>
