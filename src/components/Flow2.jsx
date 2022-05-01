@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ReactFlow, {addEdge,useNodesState,useEdgesState,Controls,useReactFlow, ConnectionLineType,  SmoothStepEdge} from 'react-flow-renderer';
+import ReactFlow, {addEdge,useNodesState,useEdgesState,Controls,useReactFlow, ConnectionLineType,  SmoothStepEdge, MarkerType} from 'react-flow-renderer';
 import { SoftwareSystemNode } from './custom nodes/SoftwareSystemNode';
 import { setLabelEdge, noSelectEdge, selectEdge, setLabelEmpty } from '../actions/edges';
 import './toolbar.css';
@@ -37,6 +37,11 @@ const Flow2 = () => {
     socket.on('newEdge', (data) => {
       console.log('frontend: newEdge');
       setEdges((eds) => addEdge(data.edge, eds));
+      setEdges((eds) => eds.map(edge => {
+        edge.markerEnd =  {type: MarkerType.ArrowClosed}//.type = MarkerType.ArrowClosed;
+        edge.style = {strokeWidth: 3}
+        return edge;
+      }));
     })
 
     // * escuchar evento para que se actualice la posición del node
@@ -55,16 +60,30 @@ const Flow2 = () => {
       setEdges((data.edges));
     })
 
-    //* escuchar evento para que se actualice la data de un node
-    /* socket.on('updatedNode', (data) => {
-      console.log(`frontend: updatedNode ${data}`);
-      setNodes((nds) => nds.map(n => {
-        if (n.id === data.id) {
-          n.data = data.data;
-        }
-        return n;
+    //* escuchar evento cuando se eliminen edges
+    socket.on('deletedEdges', (data) => {
+      console.log('frontend: deletedEdges');
+      setEdges((edges) => edges.filter(edge => {
+        if(edge.id !== data[0].id)
+          return edge;
       }));
-    }) */
+    })
+
+    //* escuchar evento cuando se elimine nodes
+    socket.on('deletedNodes', (data) => {
+      console.log('frontend: deletedNodes');
+      setNodes((nds) => nds.filter(n => {
+        for(let i =0; i < data.length; i++) {
+          if(n.id === data[i].id){
+            continue;
+          }
+          return n;
+        }
+        /* if(edge.id !== data[0].id)
+          return edge; */
+      }));
+    })
+
 
     return () => {
       socket.emit('leaveRoom', {room: params.id})
@@ -103,8 +122,17 @@ const Flow2 = () => {
     dispatch(selectEdge(edge))
   }
 
-  const handlePaneClick = () =>{
+  const handleOnEdgesDelete = (eds) => {
+    console.log(`se ha eliminado el edge ${eds.length}`);
+    socket.emit('deleteEdges', {edges:eds, room: params.id})
+  }
 
+  const handleOnNodesDelete = (nodes) => {
+    console.log(`se ha eliminado el node ${nodes.length}`);
+    socket.emit('deleteNodes', {nodes:nodes, room: params.id})
+  }
+
+  const handlePaneClick = () =>{
     if (reactFlowInstance) {
       const flow = reactFlowInstance.toObject();
       console.log(`flow`, flow);
@@ -187,6 +215,11 @@ const Flow2 = () => {
             onEdgeClick={handleEdgeClick}
             onPaneClick={handlePaneClick}
             onNodeDragStop={handleOnNodeDragStop}
+            deleteKeyCode={['Delete', 'Backspace']}
+            snapToGrid={true}
+            onEdgesDelete={handleOnEdgesDelete}
+            onNodesDelete={handleOnNodesDelete}
+            minZoom={0.1}
           >
             <div className="save__controls">
               <button onClick={onSave}>save</button>

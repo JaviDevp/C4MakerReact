@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { setLabelEdge } from '../actions/edges';
 import { SocketContext } from '../context/SocketContext';
 import { useForm } from '../hooks/useForm';
+import { ClipBoardButton } from './ClipBoardButton';
 
 
 export const EditBar = () => {
@@ -66,6 +67,10 @@ export const EditBar = () => {
         >
           Apply
         </button>
+
+        <div>
+          <ClipBoardButton/>
+        </div>
     </div>
   )
 }

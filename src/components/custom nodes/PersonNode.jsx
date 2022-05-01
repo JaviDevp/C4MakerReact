@@ -5,8 +5,6 @@ import { SocketContext } from '../../context/SocketContext';
 import { useForm } from '../../hooks/useForm';
 
 export const PersonNode = ({id, data, selected}) => {
-    const {socket, online} = useContext(SocketContext)
-    const params = useParams();
     const [formValues, handleInputChange] = useForm({
         title: (data.title !== undefined) ? data.title : 'Título',
         category: (data.category !== undefined) ? data.category : 'Categoria',
@@ -14,19 +12,9 @@ export const PersonNode = ({id, data, selected}) => {
     })
     const {title, category, description} = formValues;
     
-    useEffect(()=>{
-        console.log(`la data ha cambiado, ${data.title}`);
-        formValues.title = data.title;
-        formValues.category = data.category;
-        formValues.description = data.description;
-
-    }, [data])
-
     const {setNodes, getNodes} = useReactFlow();
-    //console.log(getNodes());
 
     useEffect(() => {
-        //console.log(getNodes());
         setNodes(getNodes().map(nodo => {
             if(nodo.id === id){
                 nodo.data = {
