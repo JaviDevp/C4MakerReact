@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 
 export const ClipBoardButton = () => {
   const [isCopied, setIsCopied] = useState(false);

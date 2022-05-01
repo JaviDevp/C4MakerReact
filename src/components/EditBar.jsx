@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom';
 import { setLabelEdge } from '../actions/edges';
 import { SocketContext } from '../context/SocketContext';
 import { useForm } from '../hooks/useForm';
-import { ClipBoardButton } from './ClipBoardButton';
+//import { ClipBoardButton } from './ClipBoardButton';
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Toaster, toast } from 'react-hot-toast';
+
 
 
 export const EditBar = () => {
@@ -17,7 +20,7 @@ export const EditBar = () => {
   const {socket} = useContext(SocketContext);
   const params = useParams();
 
-
+  console.log(params)
   const [formValues, handleInputChange] = useForm({
     description: label
   })
@@ -69,7 +72,16 @@ export const EditBar = () => {
         </button>
 
         <div>
-          <ClipBoardButton/>
+          <CopyToClipboard text={`Enlace de invitación para el proyecto: http://localhost:3000/diagram/${params.id}`}>
+            <button 
+              className='my-4 py-2 px-3 bg-green-600 border border-gray-500 rounded-md text-white font-bold
+                         hover:bg-green-700 hover:text-white'
+              onClick={() => toast.success("invitación copiada al portapapeles", {position: "bottom-right", autoClose: 3000})}
+            >
+              Copiar invitación
+            </button>
+          </CopyToClipboard>
+          <Toaster/>
         </div>
     </div>
   )
