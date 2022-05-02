@@ -1,21 +1,18 @@
-import React, {useEffect, useState  }from 'react'
+import React, { useEffect }from 'react'
 import { Handle, Position, useReactFlow } from 'react-flow-renderer';
 import { useForm } from '../../hooks/useForm';
 
-export const DataBaseNode = ({id, data}) => {
-    //console.log(id);
+export const DataBaseNode = ({id, data, selected}) => {
     const [formValues, handleInputChange] = useForm({
-        title: (data.title !== undefined) ? data.title : 'Database Name',
-        category: (data.category !== undefined) ? data.category : 'Categoria',
-        description: (data.description !== undefined) ? data.description : 'Descripción'
+        title: (data.title !== undefined) ? data.title : 'Data Name',
+        category: (data.category !== undefined) ? data.category : '[Detail]',
+        description: (data.description !== undefined) ? data.description : 'Description'
     })
     const {title, category, description} = formValues;
     
     const {setNodes, getNodes} = useReactFlow();
-    //console.log(getNodes());
 
     useEffect(() => {
-        //console.log(getNodes());
         setNodes(getNodes().map(nodo => {
             if(nodo.id === id){
                 nodo.data = {
@@ -27,17 +24,42 @@ export const DataBaseNode = ({id, data}) => {
             return nodo;
         }) );
     }, [title, category, description]);
-    
+
+    const handleStyleLeft = { left: 120 };
+    const handleStyleLeft2 = { left: 205 };
+    const handleStyleTop = { top: 150 };
+    const handleStyleTop2 = { top: 230 };
 
   return (
-    <div className='grid justify-items-center'>
-        <Handle type="target" position={Position.Top} />
+    <div className={`grid justify-items-center ${selected? 'border-dashed border-2 border-gray-600 rounded-md' :''}`}
+    >
+        <Handle type="source" position={Position.Top} id='a' style={handleStyleLeft}/>
+        <Handle
+            type="target" position={Position.Top} id='b' style={handleStyleLeft2}
+            className='bg-white border border-black'
+        />
 
-        <div className='bg-sky-400 border border-black flex flex-col rounded-tr-3xl	'>
-            {/* <div className='bg-sky-400 border border-black rounded-full h-24 w-full flex justify-center '>
+        <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
+        <Handle
+            type="target" position={Position.Right} id='d' style={handleStyleTop}
+            className='bg-white border border-black'
+        />
 
-            </div> */}
-            <br/>
+        <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>
+        <Handle
+            type="target" position={Position.Bottom} id='f' style={handleStyleLeft}
+            className='bg-white border border-black'
+        />
+        
+        <Handle type="source" position={Position.Left}  id='g' style={handleStyleTop}/>
+        <Handle
+            type="target" position={Position.Left}  id='h' style={handleStyleTop2}
+            className='bg-white border border-black'
+        />
+
+        <div className='bg-cyan-600	border-l border-r border-b border-black rounded-lg'>
+            <div className='bg-cyan-600 border border-black	rounded-full h-16 w-full flex justify-center '>
+            </div>
             <div className='mt-4 mb-1'>
                 <input
                     type="text"
@@ -77,9 +99,7 @@ export const DataBaseNode = ({id, data}) => {
                 >
                 </textarea>
             </div>
-            
         </div>
-        <Handle type="source" position={Position.Bottom}  id='a'/>
 
     </div>
     

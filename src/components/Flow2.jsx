@@ -14,6 +14,9 @@ import { updateProject } from '../helpers/updateProject';
 import { SocketContext } from '../context/SocketContext';
 import html2canvas from 'html2canvas';
 import { ExternalPersonNode } from './custom nodes/ExternalPerson';
+import { ExternalSoftwareSystemNode } from './custom nodes/ExternalSoftwareSystemNode';
+import { ContainerNode } from './custom nodes/ContainerNode';
+import { ComponentNode } from './custom nodes/ComponentNode';
 
 const Flow2 = () => {
   const params = useParams();
@@ -43,6 +46,7 @@ const Flow2 = () => {
       setEdges((eds) => eds.map(edge => {
         edge.markerEnd =  {type: MarkerType.ArrowClosed}//.type = MarkerType.ArrowClosed;
         edge.style = {strokeWidth: 3}
+        edge.labelStyle = {fontSize: '1.5rem'}
         return edge;
       }));
     })
@@ -207,6 +211,9 @@ const Flow2 = () => {
     Database: DataBaseNode,
     Person: PersonNode,
     ExternalPerson: ExternalPersonNode,
+    ExternalSoftwareSystem: ExternalSoftwareSystemNode,
+    Container: ContainerNode,
+    Component: ComponentNode
   }) , []);
   const edgeTypes = useMemo(() =>({ default: SmoothStepEdge }), []);
 

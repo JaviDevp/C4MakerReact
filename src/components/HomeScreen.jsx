@@ -19,12 +19,6 @@ export const HomeScreen = () => {
          <Header/>
        </div>
 
-       <div>
-         <button onClick = {onclick}>
-            emitir mensaje
-         </button>
-       </div>
-
         <div className='border-solid border border-gray-400 h-5/6'>
           <HomeBoardScreen/>
         </div>

@@ -2,12 +2,10 @@ import React, { useEffect }from 'react'
 import { Handle, Position, useReactFlow } from 'react-flow-renderer';
 import { useForm } from '../../hooks/useForm';
 
-export const ExternalSoftwareSystemNode = ({id, data, selected}) => {
-    
-    
+export const ComponentNode = ({id, data, selected}) => {
     const [formValues, handleInputChange] = useForm({
-        title: (data.title !== undefined) ? data.title : 'External System Name',
-        category: (data.category !== undefined) ? data.category : '[Software System]',
+        title: (data.title !== undefined) ? data.title : 'Component Name',
+        category: (data.category !== undefined) ? data.category : '[Component]',
         description: (data.description !== undefined) ? data.description : 'Descripion'
     })
     const {title, category, description} = formValues;
@@ -35,7 +33,7 @@ export const ExternalSoftwareSystemNode = ({id, data, selected}) => {
 
   return (
     <div className={`${selected? 'border-dashed border-2 border-gray-600 rounded-md p-1' :''}`}>
-    <div className={`bg-zinc-400 border border-black flex flex-col p-2 rounded-sm `}>
+    <div className={`bg-cyan-400 border rounded-lg border-black flex flex-col p-2 `}>
         <Handle type="source" position={Position.Top} id='a' style={handleStyleLeft}/>
         <Handle
             type="target" position={Position.Top} id='b' style={handleStyleLeft2}
@@ -91,7 +89,7 @@ export const ExternalSoftwareSystemNode = ({id, data, selected}) => {
                 name="description"
                 id="description"
                 cols="40"
-                rows="4"
+                rows="3"
                 onChange={handleInputChange}
                 value={description}
                 className='bg-transparent text-center focus:outline-none text-gray-200'
@@ -103,7 +101,7 @@ export const ExternalSoftwareSystemNode = ({id, data, selected}) => {
   )
 }
 
-ExternalSoftwareSystemNode.defaultProps = {
+ComponentNode.defaultProps = {
     title: 'Título',
     category: 'Categoría',
     description: 'Descripción'

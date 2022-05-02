@@ -13,7 +13,7 @@ export const HomeBoardScreen = () => {
   // console.log(data)
   
   return (
-    <div className='border m-1'>
+    <div className='m-1'>
 
       <div className='grid grid-cols-3 gap-4'>
         <NewDiagramButton/>

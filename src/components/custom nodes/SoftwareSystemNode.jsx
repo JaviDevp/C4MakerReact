@@ -7,9 +7,9 @@ export const SoftwareSystemNode = ({id, data, selected}) => {
     
     
     const [formValues, handleInputChange] = useForm({
-        title: (data.title !== undefined) ? data.title : 'Título',
-        category: (data.category !== undefined) ? data.category : 'Categoria',
-        description: (data.description !== undefined) ? data.description : 'Descripción'
+        title: (data.title !== undefined) ? data.title : 'System Name',
+        category: (data.category !== undefined) ? data.category : '[Software System]',
+        description: (data.description !== undefined) ? data.description : 'Description'
     })
     const {title, category, description} = formValues;
     

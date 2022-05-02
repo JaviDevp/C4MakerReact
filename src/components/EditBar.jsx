@@ -19,6 +19,14 @@ export const EditBar = () => {
   const [a, setA] = useState('');
   const {socket} = useContext(SocketContext);
   const params = useParams();
+  const [users, setUsers] = useState(0);
+
+  /* useEffect(() => {
+    socket.on('updateUsers', (data) => {
+      setUsers(data);
+    })
+  }, []) */
+  
 
   console.log(params)
   const [formValues, handleInputChange] = useForm({
@@ -93,6 +101,11 @@ export const EditBar = () => {
 
           <Toaster/>
         </div>
+
+        {/* <div>
+          <span>En Línea: {users}</span>
+
+        </div> */}
     </div>
   )
 }

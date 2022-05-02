@@ -1,8 +1,5 @@
 import React from 'react'
-import { Database } from './ToolbarNodes/Database';
-import { ExternalPerson } from './ToolbarNodes/ExternalPerson';
-import { Person } from './ToolbarNodes/Person';
-import { SoftwareSystem } from './ToolbarNodes/SoftwareSystem';
+import { NodeToolBar } from './ToolbarNodes/NodeToolBar';
 
 
 export const ToolBar = () => {
@@ -15,25 +12,36 @@ export const ToolBar = () => {
   return (
     <aside >
       <div className="description">Arrastra los elementos.</div> 
-      <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'input')} draggable>
-        Input Node
-      </div>
       
       <div onDragStart={(event) => onDragStart(event, 'SoftwareSystem')} draggable>
-        <SoftwareSystem/>
+        <NodeToolBar path='/assets/SoftwareSystem.jpg' name='Soft. System'/>
       </div>
 
       <div onDragStart={(event) => onDragStart(event, 'Person')} draggable>
-        <Person/>
+        <NodeToolBar path='/assets/Person.jpg' name='Person'/>
       </div>
 
       <div onDragStart={(event) => onDragStart(event, 'ExternalPerson')} draggable>
-        <ExternalPerson/>
+        <NodeToolBar path='/assets/ExternalPerson.jpg' name='External Person'/>
       </div>
 
       <div onDragStart={(event) => onDragStart(event, 'Database')} draggable>
-        <Database/>
+        <NodeToolBar path='/assets/Database.jpg' name='Database'/>
       </div>
+
+      <div onDragStart={(event) => onDragStart(event, 'ExternalSoftwareSystem')} draggable>
+        <NodeToolBar path='/assets/ExternalSoftwareSystem.jpg' name='External System'/>
+      </div>
+
+      <div onDragStart={(event) => onDragStart(event, 'Container')} draggable>
+        <NodeToolBar path='/assets/Container.jpg' name='Container'/>
+      </div>
+
+      <div onDragStart={(event) => onDragStart(event, 'Component')} draggable>
+        <NodeToolBar path='/assets/Component.jpg' name='Component'/>
+      </div>
+
+
     </aside>
   );
 }
