@@ -1,5 +1,6 @@
 import React from 'react'
 import { Database } from './ToolbarNodes/Database';
+import { ExternalPerson } from './ToolbarNodes/ExternalPerson';
 import { Person } from './ToolbarNodes/Person';
 import { SoftwareSystem } from './ToolbarNodes/SoftwareSystem';
 
@@ -12,8 +13,8 @@ export const ToolBar = () => {
 
 
   return (
-    <aside className=''>
-      <div className="description">Arrastra los elementos para dibujarlos en la pizarra.</div> 
+    <aside >
+      <div className="description">Arrastra los elementos.</div> 
       <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'input')} draggable>
         Input Node
       </div>
@@ -24,6 +25,10 @@ export const ToolBar = () => {
 
       <div onDragStart={(event) => onDragStart(event, 'Person')} draggable>
         <Person/>
+      </div>
+
+      <div onDragStart={(event) => onDragStart(event, 'ExternalPerson')} draggable>
+        <ExternalPerson/>
       </div>
 
       <div onDragStart={(event) => onDragStart(event, 'Database')} draggable>

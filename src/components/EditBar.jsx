@@ -55,28 +55,37 @@ export const EditBar = () => {
   
   return (
     <div className='ml-1 mt-1'>
-        <div>
-            <label>Descripción Edge</label>
+        <div className='flex flex-col my-3 mx-1'>
+            <label className='mt-2 mb-1'>Descripción del conector</label>
             <textarea
                 name='description'
                 onChange={handleInputChangeA}
                 value={a}
-                className='border-solid border-2 border-gray-500 pl-1 pr-1'
+                className='mb-2 border-solid border border-gray-500 rounded-md'
             />
             
+            <button className='border-solid border rounded-md border-gray-500 my-3 hover:bg-slate-300'
+                    onClick={handleButtonClick}
+            >
+              Aplicar
+            </button>
         </div>
-        <button className='border-solid border-2 border-gray-500'
-                onClick={handleButtonClick}
-        >
-          Apply
-        </button>
 
-        <div>
+        <div className='mx-1'>
           <CopyToClipboard text={`Enlace de invitación para el proyecto: http://localhost:3000/diagram/${params.id}`}>
             <button 
               className='my-4 py-2 px-3 bg-green-600 border border-gray-500 rounded-md text-white font-bold
                          hover:bg-green-700 hover:text-white'
-              onClick={() => toast.success("invitación copiada al portapapeles", {position: "bottom-right", autoClose: 3000})}
+              onClick={() => toast("invitación copiada al portapapeles",
+              {
+                style: {
+                  borderRadius: '10px',
+                  background: '#333',
+                  color: '#fff',
+                },
+                position: "bottom-right",
+                autoClose: 3000
+              })}
             >
               Copiar invitación
             </button>

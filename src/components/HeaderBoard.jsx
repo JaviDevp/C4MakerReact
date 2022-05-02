@@ -47,7 +47,7 @@ export const HeaderBoard = () => {
         <div className='col-span-2'>
             <Link
                 to="/home"
-                className="border-solid border border-black block py-2 
+                className="w-2/3 border-solid border border-black block py-1 
                            text-gray-600 font-bold hover:bg-black hover:text-white  rounded-md"
             >
                 <div>
@@ -58,7 +58,7 @@ export const HeaderBoard = () => {
 
         <div className='col-span-10  place-items-center border-b border-gray-400 mx-8'>
             <input name='name'
-                className='w-full text-center border-solid py-2 outline-none text-base text-gray-600 '
+                className='w-full text-center border-solid py-1 outline-none text-base text-gray-600 '
                 placeholder='Nombre del proyecto'
                 onChange={handleInputChange}
                 value={name}

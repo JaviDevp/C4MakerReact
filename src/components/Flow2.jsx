@@ -13,6 +13,7 @@ import { useFetchProject } from '../hooks/useFetchProject';
 import { updateProject } from '../helpers/updateProject';
 import { SocketContext } from '../context/SocketContext';
 import html2canvas from 'html2canvas';
+import { ExternalPersonNode } from './custom nodes/ExternalPerson';
 
 const Flow2 = () => {
   const params = useParams();
@@ -50,10 +51,23 @@ const Flow2 = () => {
     socket.on('movedNode', (data) => {
       console.log(`frontend: movedNode ${data.node.data.title}`);
       setNodes((nds) => nds.filter(n => {
+        n.selected = false;
         if (n.id !== data.node.id) 
           return n;
       }));
       setNodes((nds) => nds.concat(data.node));
+    })
+
+    //* escuchar cuando se actualiza un nodo
+    socket.on('updatedNode', (data) => {
+      console.log(`frontend: updatedNode ${data.node}`);
+      setNodes((nds) => nds.filter(n => {
+        n.selected = false;
+        if (n.id !== data.node.id) 
+          return n;
+      }));
+      setNodes((nds) => nds.concat(data.node));
+      
     })
 
     //* escuchar evento para que se actualice el label de un edge
@@ -94,7 +108,7 @@ const Flow2 = () => {
 
   const handleOnNodeDragStop = (e, node) => {
     console.log(`se ha movido el nodo ${node.data.title}`);
-    socket.emit('moveNode', {node, room: params.id})
+    socket.emit('moveNode', {node, room: params.id});
     //socket.emit('updateNode', {data: node.data, room: params.id})
   }
 
@@ -124,14 +138,18 @@ const Flow2 = () => {
     dispatch(selectEdge(edge))
   }
 
+  const handleNodeMouseLeave = (e, node) => {
+    socket.emit('updateNode', {node, room: params.id});
+  }
+
   const handleOnEdgesDelete = (eds) => {
     console.log(`se ha eliminado el edge ${eds.length}`);
-    socket.emit('deleteEdges', {edges:eds, room: params.id})
+    socket.emit('deleteEdges', {edges:eds, room: params.id});
   }
 
   const handleOnNodesDelete = (nodes) => {
     console.log(`se ha eliminado el node ${nodes.length}`);
-    socket.emit('deleteNodes', {nodes:nodes, room: params.id})
+    socket.emit('deleteNodes', {nodes:nodes, room: params.id});
   }
 
   const handlePaneClick = () =>{
@@ -184,7 +202,12 @@ const Flow2 = () => {
     [reactFlowInstance]
   );
 
-  const nodeTypes = useMemo(() =>({SoftwareSystem: SoftwareSystemNode, Database: DataBaseNode, Person: PersonNode}) , []);
+  const nodeTypes = useMemo(() =>({
+    SoftwareSystem: SoftwareSystemNode,
+    Database: DataBaseNode,
+    Person: PersonNode,
+    ExternalPerson: ExternalPersonNode,
+  }) , []);
   const edgeTypes = useMemo(() =>({ default: SmoothStepEdge }), []);
 
   function isObjEmpty(obj) {
@@ -234,6 +257,8 @@ const Flow2 = () => {
             fitView={fit}
             connectionLineType={ConnectionLineType.Step}
             onEdgeClick={handleEdgeClick}
+            // onNodeClick={handleNodeClick}
+            onNodeMouseLeave={handleNodeMouseLeave}
             onPaneClick={handlePaneClick}
             onNodeDragStop={handleOnNodeDragStop}
             deleteKeyCode={['Delete', 'Backspace']}

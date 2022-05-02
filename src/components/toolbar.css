@@ -6,10 +6,10 @@
   }
   
   .dndflow aside {
-    border-right: 1px solid #eee;
+    border-right: 1px solid silver;
     padding: 15px 10px;
-    /* font-size: 17px; */
-    background: #fcfcfc;
+    background: white;
+
   }
   
   .dndflow aside .description {
@@ -26,14 +26,6 @@
     justify-content: center;
     align-items: center;
     cursor: grab;
-  }
-  
-  .dndflow .dndnode.input {
-    border-color: #0041d0;
-  }
-  
-  .dndflow .dndnode.output {
-    border-color: #ff0072;
   }
   
   .dndflow .reactflow-wrapper {

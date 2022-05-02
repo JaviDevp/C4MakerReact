@@ -2,7 +2,7 @@ import React, {useEffect, useState  }from 'react'
 import { Handle, Position, useReactFlow } from 'react-flow-renderer';
 import { useForm } from '../../hooks/useForm';
 
-export const SoftwareSystemNode = ({id, data}) => {
+export const SoftwareSystemNode = ({id, data, selected}) => {
     //console.log(id);
     
     
@@ -34,14 +34,41 @@ export const SoftwareSystemNode = ({id, data}) => {
     const handleStyle = { left: 50 };
 
     
+    const handleStyleLeft = { left: 120 };
+    const handleStyleLeft2 = { left: 205 };
+    const handleStyleTop = { top: 140 };
+    const handleStyleTop2 = { top: 80 };
 
   return (
-    <div className='bg-sky-600 flex flex-col p-2 rounded-sm	'>
-        <Handle type="target" position={Position.Top} />
+    <div className={`${selected? 'border-dashed border-2 border-gray-600 rounded-md p-1' :''}`}>
+    <div className={`bg-sky-600 border border-black flex flex-col p-2 rounded-sm `}>
+        <Handle type="source" position={Position.Top} id='a' style={handleStyleLeft}/>
+        <Handle
+            type="target" position={Position.Top} id='b' style={handleStyleLeft2}
+            className='bg-white border border-black'
+        />
+
+        <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
+        <Handle
+            type="target" position={Position.Right} id='d' style={handleStyleTop}
+            className='bg-white border border-black'
+        />
+
+        <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>
+        <Handle
+            type="target" position={Position.Bottom} id='f' style={handleStyleLeft}
+            className='bg-white border border-black'
+        />
+        
+        <Handle type="source" position={Position.Left}  id='g' style={handleStyleTop}/>
+        <Handle
+            type="target" position={Position.Left}  id='h' style={handleStyleTop2}
+            className='bg-white border border-black'
+        />
         <div className='mt-4 mb-1'>
             <input
                 type="text"
-                name='title'
+                name='title' 
                 id='title'
                 onChange={handleInputChange}
                 value={title}
@@ -77,10 +104,7 @@ export const SoftwareSystemNode = ({id, data}) => {
             >
             </textarea>
         </div>
-        <Handle type="source" position={Position.Bottom}  id='a'/>
-        {/* <Handle type="target" position={Position.Bottom} style={handleStyle}/> */}
-
-
+    </div>
     </div>
   )
 }

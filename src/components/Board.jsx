@@ -15,11 +15,11 @@ export const Board = () => {
                <HeaderBoard/>
             </div>
       
-            <div className='col-span-8 border-solid border-2 border-sky-500 m-1 h-screen' >
+            <div className='col-span-8 border-solid border border-neutral-300 m-1 h-screen' >
                 <Flow2/>
             </div>
 
-            <div className='col-span-2 border-solid border-2 border-sky-500 m-1 h-screen'>
+            <div className='col-span-2 border-solid border border-neutral-300 m-1 h-screen'>
                 <EditBar/>
             </div>
       </ReactFlowProvider>
