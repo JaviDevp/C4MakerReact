@@ -81,6 +81,7 @@ export const EditBar = () => {
               Copiar invitación
             </button>
           </CopyToClipboard>
+
           <Toaster/>
         </div>
     </div>

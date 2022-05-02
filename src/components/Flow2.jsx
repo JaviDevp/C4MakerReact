@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ReactFlow, {addEdge,useNodesState,useEdgesState,Controls,useReactFlow, ConnectionLineType,  SmoothStepEdge, MarkerType} from 'react-flow-renderer';
+import ReactFlow, {addEdge,useNodesState,useEdgesState,Controls,useReactFlow, ConnectionLineType,  SmoothStepEdge, MarkerType, Background} from 'react-flow-renderer';
 import { SoftwareSystemNode } from './custom nodes/SoftwareSystemNode';
 import { setLabelEdge, noSelectEdge, selectEdge, setLabelEmpty } from '../actions/edges';
 import './toolbar.css';
@@ -12,6 +12,7 @@ import { DataBaseNode } from './custom nodes/DatabaseNode';
 import { useFetchProject } from '../hooks/useFetchProject';
 import { updateProject } from '../helpers/updateProject';
 import { SocketContext } from '../context/SocketContext';
+import html2canvas from 'html2canvas';
 
 const Flow2 = () => {
   const params = useParams();
@@ -22,7 +23,8 @@ const Flow2 = () => {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const { setViewport } = useReactFlow();
   const dispatch = useDispatch();
-  const {socket, online} = useContext(SocketContext)
+  const {socket, online} = useContext(SocketContext);
+  const [fit, setFit] = useState(true);
 
   useEffect(() => {
     socket.emit('joinRoom', {room: params.id})
@@ -100,7 +102,7 @@ const Flow2 = () => {
   useEffect(() => {
     setNodes(project.diagramObject !== undefined ? project.diagramObject.nodes : []);
     setEdges(project.diagramObject !== undefined ? project.diagramObject.edges : []);
-    console.log(`nodes: ${nodes}, edges: ${edges}`);
+    //console.log(`nodes: ${nodes}, edges: ${edges}`);
   }, [project.diagramObject])
   
   const onSave = useCallback( async () => {
@@ -193,13 +195,32 @@ const Flow2 = () => {
     return true;
   }
 
+  function capture() {
+    setFit(true);
+    const captureElement = document.querySelector('#flowContainer');
+    html2canvas(captureElement)
+        .then(canvas => {
+            canvas.style.display = 'none'
+            document.body.appendChild(canvas)
+            return canvas
+        })
+        .then(canvas => {
+            const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')
+            const a = document.createElement('a')
+            a.setAttribute('download', 'my-image.png')
+            a.setAttribute('href', image)
+            a.click()
+            canvas.remove()
+        })
+  }
+
   return (
-      <div className="dndflow">
+      <div className="dndflow" >
             <ToolBar />
-        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
-          
+        <div className="reactflow-wrapper" ref={reactFlowWrapper} id='flowContainer'>
           { !isObjEmpty(project.diagramObject) ? 
-            <ReactFlow
+            <ReactFlow 
+            
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
@@ -210,7 +231,7 @@ const Flow2 = () => {
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            fitView
+            fitView={fit}
             connectionLineType={ConnectionLineType.Step}
             onEdgeClick={handleEdgeClick}
             onPaneClick={handlePaneClick}
@@ -221,13 +242,13 @@ const Flow2 = () => {
             onNodesDelete={handleOnNodesDelete}
             minZoom={0.1}
           >
-            <div className="save__controls">
-              <button onClick={onSave}>save</button>
-            </div>
             <Controls />
+            <Background variant="lines" gap={25} size={0.5} />
           </ReactFlow> : <div><h1>CARGANDO DIAGRAMA {project.id}</h1></div>
           }
+        <button className='w-full border text-gray-700' onClick={capture}>Descargar Diagrama</button>
         </div>
+
       </div>
   );
 };
