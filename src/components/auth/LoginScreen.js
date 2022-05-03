@@ -69,7 +69,7 @@ export const LoginScreen = () => {
                   Iniciar Sesión
             </button>
 
-            <div className='border-solid border border-slate-500 rounded-md mb-2 cursor-pointer flex'>
+            {/* <div className='border-solid border border-slate-500 rounded-md mb-2 cursor-pointer flex'>
                 <div 
                   className="flex pt-1 pb-1 m-auto border-solid border border-slate-100"
                   onClick={handleGoogleLogin}
@@ -82,7 +82,7 @@ export const LoginScreen = () => {
                   </p>
                 </div>
 
-            </div>
+            </div> */}
               <Link
                 to="/auth/register"
                 className='text-center block '
