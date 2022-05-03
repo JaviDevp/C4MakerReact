@@ -1,5 +1,7 @@
 export const updateProject = async (id, name, uid, diagramObject, username) => {
-    const url = `http://localhost:8080/projects/${id}`;
+    //const url = `http://localhost:8080/projects/${id}`;
+    const url = `https://c4maker-server.herokuapp.com/projects/${id}`;
+
     const data = {
         name,
         diagramObject,

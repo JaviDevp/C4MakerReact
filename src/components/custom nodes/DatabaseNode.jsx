@@ -57,8 +57,8 @@ export const DataBaseNode = ({id, data, selected}) => {
             className='bg-white border border-black'
         />
 
-        <div className='bg-cyan-600	border-l border-r border-b border-black rounded-lg'>
-            <div className='bg-cyan-600 border border-black	rounded-full h-16 w-full flex justify-center '>
+        <div className='bg-cyan-500	border-l border-r border-b border-black rounded-lg'>
+            <div className='bg-cyan-500 border border-black	rounded-full h-16 w-full flex justify-center '>
             </div>
             <div className='mt-4 mb-1'>
                 <input

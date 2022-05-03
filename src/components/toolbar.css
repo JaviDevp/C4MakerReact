@@ -9,6 +9,8 @@
     border-right: 1px solid silver;
     padding: 15px 10px;
     background: white;
+    height: 100%;
+    overflow: auto
 
   }
   

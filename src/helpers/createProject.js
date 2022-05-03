@@ -11,7 +11,8 @@ const objetoNuevoDiagrama = {
 const nuevoDiagramaTexto = JSON.stringify(objetoNuevoDiagrama);
 
 export const createProject = async (name = 'nuevo diagrama', uid, diagramObject = "", username) => {
-    const url = `http://localhost:8080/projects`;
+    //const url = `http://localhost:8080/projects`;
+    const url = `https://c4maker-server.herokuapp.com/projects`;
     const data = {
         uid,
         name,
