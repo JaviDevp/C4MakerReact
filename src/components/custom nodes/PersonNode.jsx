@@ -46,7 +46,7 @@ export const PersonNode = ({id, data, selected}) => {
         <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
         <Handle
             type="target" position={Position.Right} id='d'
-            style={{handleStyleTop, ...targetStyle}}  
+            style={{top: 150, ...targetStyle}}  
         />
 
         <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>

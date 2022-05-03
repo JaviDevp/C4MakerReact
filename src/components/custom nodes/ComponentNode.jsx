@@ -28,34 +28,36 @@ export const ComponentNode = ({id, data, selected}) => {
 
     const handleStyleLeft = { left: 120 };
     const handleStyleLeft2 = { left: 205 };
-    const handleStyleTop = { top: 140 };
-    const handleStyleTop2 = { top: 80 };
+    const handleStyleTop = { top: 80 };
+    const handleStyleTop2 = { top: 140 };
+    const targetStyle = {background: '#fff', border: '1px solid #000000'}
 
   return (
     <div className={`${selected? 'border-dashed border-2 border-gray-600 rounded-md p-1' :''}`}>
     <div className={`bg-cyan-400 border rounded-lg border-black flex flex-col p-2 `}>
-        <Handle type="source" position={Position.Top} id='a' style={handleStyleLeft}/>
+    <Handle type="source" position={Position.Top} id='a'
+            style={handleStyleLeft}/>
         <Handle
-            type="target" position={Position.Top} id='b' style={handleStyleLeft2}
-            className='bg-white border border-black'
+            type="target" position={Position.Top} id='b'
+            style={{left: 205 , ...targetStyle}}
         />
 
         <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
         <Handle
-            type="target" position={Position.Right} id='d' style={handleStyleTop}
-            className='bg-white border border-black'
+            type="target" position={Position.Right} id='d'
+            style={{top: 80, ...targetStyle}}  
         />
 
         <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>
         <Handle
-            type="target" position={Position.Bottom} id='f' style={handleStyleLeft}
-            className='bg-white border border-black'
+            type="target" position={Position.Bottom} id='f'
+            style={{left: 120, ...targetStyle}}
         />
         
         <Handle type="source" position={Position.Left}  id='g' style={handleStyleTop}/>
         <Handle
-            type="target" position={Position.Left}  id='h' style={handleStyleTop2}
-            className='bg-white border border-black'
+            type="target" position={Position.Left}  id='h'
+            style={{top: 140, ...targetStyle}}
         />
         <div className='mt-4 mb-1'>
             <input
