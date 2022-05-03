@@ -1,4 +1,4 @@
-import React, { useEffect }from 'react'
+import React, { useEffect, useRef }from 'react'
 import { Handle, Position, useReactFlow } from 'react-flow-renderer';
 import { useForm } from '../../hooks/useForm';
 
@@ -9,6 +9,7 @@ export const PersonNode = ({id, data, selected}) => {
         description: (data.description !== undefined) ? data.description : 'Descripción'
     })
     const {title, category, description} = formValues;
+    const ref = useRef(null);
     
     const {setNodes, getNodes} = useReactFlow();
 
@@ -25,36 +26,39 @@ export const PersonNode = ({id, data, selected}) => {
         }) );
     }, [title, category, description]);
 
+
     const handleStyleLeft = { left: 120 };
-    const handleStyleLeft2 = { left: 205 };
+    const handleStyleLeft2 = { left: 205};
     const handleStyleTop = { top: 150 };
     const handleStyleTop2 = { top: 230 };
+    const targetStyle = {background: '#fff', border: '1px solid #000000'}
 
   return (
     <div className={`grid justify-items-center ${selected? 'border-dashed border-2 border-gray-600 rounded-md' :''}`}
     >
-        <Handle type="source" position={Position.Top} id='a' style={handleStyleLeft}/>
+        <Handle type="source" position={Position.Top} id='a'
+            style={handleStyleLeft}/>
         <Handle
-            type="target" position={Position.Top} id='b' style={handleStyleLeft2}
-            className='bg-white border border-black'
+            type="target" position={Position.Top} id='b'
+            style={{left: 205 , ...targetStyle}}
         />
 
         <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
         <Handle
-            type="target" position={Position.Right} id='d' style={handleStyleTop}
-            className='bg-white border border-black'
+            type="target" position={Position.Right} id='d'
+            style={{handleStyleTop, ...targetStyle}}  
         />
 
         <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>
         <Handle
-            type="target" position={Position.Bottom} id='f' style={handleStyleLeft}
-            className='bg-white border border-black'
+            type="target" position={Position.Bottom} id='f'
+            style={{left: 120, ...targetStyle}}
         />
         
         <Handle type="source" position={Position.Left}  id='g' style={handleStyleTop}/>
         <Handle
-            type="target" position={Position.Left}  id='h' style={handleStyleTop2}
-            className='bg-white border border-black'
+            type="target" position={Position.Left}  id='h'
+            style={{top: 230, ...targetStyle}}
         />
 
         <div className='bg-blue-800 border border-black	 rounded-full h-24 w-24 flex justify-center	translate-y-2'>
