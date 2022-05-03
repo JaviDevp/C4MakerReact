@@ -278,7 +278,7 @@ const Flow2 = () => {
             <Background variant="lines" gap={25} size={0.5} />
           </ReactFlow> : <div><h1>CARGANDO DIAGRAMA {project.id}</h1></div>
           }
-        <button className='w-full border text-gray-700' onClick={capture}>Descargar Diagrama</button>
+        <button className='w-full border bg-white text-gray-900 font-semibold' onClick={capture}>Descargar Diagrama</button>
         </div>
 
       </div>

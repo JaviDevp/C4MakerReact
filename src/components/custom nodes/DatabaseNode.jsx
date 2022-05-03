@@ -28,8 +28,9 @@ export const DataBaseNode = ({id, data, selected}) => {
     const handleStyleLeft = { left: 120 };
     const handleStyleLeft2 = { left: 205 };
     const handleStyleTop = { top: 150 };
-    const handleStyleTop2 = { top: 230 };
+    const handleStyleTop2 = { top: 150 };
     const targetStyle = {background: '#fff', border: '1px solid #000000'}
+    const dbStyle = {background: 'rgb(14 116 144)', border: '1px solid #000000', borderRadius: '170px/30px'}
 
 
   return (
@@ -45,7 +46,7 @@ export const DataBaseNode = ({id, data, selected}) => {
         <Handle type="source" position={Position.Right} id='c' style={handleStyleTop2}/>
         <Handle
             type="target" position={Position.Right} id='d'
-            style={{top: 150, ...targetStyle}}  
+            style={{top: 70, ...targetStyle}}  
         />
 
         <Handle type="source" position={Position.Bottom} id='e' style={handleStyleLeft2}/>
@@ -54,15 +55,17 @@ export const DataBaseNode = ({id, data, selected}) => {
             style={{left: 120, ...targetStyle}}
         />
         
-        <Handle type="source" position={Position.Left}  id='g' style={handleStyleTop}/>
+        <Handle type="source" position={Position.Left}  id='g' style={ {top: 70} }/>
         <Handle
             type="target" position={Position.Left}  id='h'
-            style={{top: 230, ...targetStyle}}
+            style={{top: 150, ...targetStyle}}
         />
 
-        <div className='bg-cyan-500	border-l border-r border-b border-black rounded-lg'>
-            <div className='bg-cyan-500 border border-black	rounded-full h-16 w-full flex justify-center '>
-            </div>
+        {/* <div className='bg-cyan-500	border-l border-r border-b border-black rounded-lg'> */}
+        <div style={dbStyle}>
+
+            {/* <div className='bg-cyan-500 border border-black	rounded-full h-16 w-full flex justify-center '>
+            </div> */}
             <div className='mt-4 mb-1'>
                 <input
                     type="text"

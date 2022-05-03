@@ -80,7 +80,7 @@ export const EditBar = () => {
         </div>
 
         <div className='mx-1'>
-          <CopyToClipboard text={`Enlace de invitación para el proyecto: http://localhost:3000/diagram/${params.id}`}>
+          <CopyToClipboard text={`Enlace de invitación para el proyecto: https://c4maker.herokuapp.com/diagram/${params.id}`}>
             <button 
               className='my-4 py-2 px-3 bg-green-600 border border-gray-500 rounded-md text-white font-bold
                          hover:bg-green-700 hover:text-white'
