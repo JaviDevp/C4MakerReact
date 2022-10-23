@@ -1,45 +1,40 @@
-import React from 'react';
-import { EdgeText, getBezierPath, getMarkerEnd, getSmoothStepPath, MarkerType } from 'react-flow-renderer';
+import PropTypes from 'prop-types';
+import { getSmoothStepPath } from 'react-flow-renderer';
 
 export default function CustomEdge({
-  id,
-  sourceX,
-  sourceY,
-  targetX,
-  targetY,
-  sourcePosition,
-  targetPosition,
-  style = {},
-  data,
-  label = 'sds',
-  arrowHeadType = 'arrowclosed',
-  markerEnd// = MarkerType.ArrowClosed,
+	id,
+	sourceX,
+	sourceY,
+	targetX,
+	targetY,
+	sourcePosition,
+	targetPosition,
 }) {
-  const edgePath = getSmoothStepPath({
-    sourceX,
-    sourceY,
-    sourcePosition,
-    targetX,
-    targetY,
-    targetPosition,
-    arrowHeadType
-  });
+	const edgePath = getSmoothStepPath({
+		sourceX,
+		sourceY,
+		sourcePosition,
+		targetX,
+		targetY,
+		targetPosition,
+	});
 
-  const mark = getMarkerEnd();
-
-  return (
-    <>
-      <path
-        id={id}
-        style={style}
-        className="react-flow__edge-path"
-        d={edgePath}
-        markerEnd={markerEnd}
-
-      />
-      <body>
-        <input value={'dddd'}/>
-      </body>
-    </>
-  );
+	return (
+		<>
+			<path id={id} className='react-flow__edge-path' d={edgePath} />
+			<body>
+				<input value={'dddd'} />
+			</body>
+		</>
+	);
 }
+
+CustomEdge.propTypes = {
+	id: PropTypes.string.isRequired,
+	sourceX: PropTypes.number.isRequired,
+	sourceY: PropTypes.number.isRequired,
+	targetX: PropTypes.number.isRequired,
+	targetY: PropTypes.number.isRequired,
+	sourcePosition: PropTypes.object.isRequired,
+	targetPosition: PropTypes.object.isRequired,
+};

@@ -17,9 +17,9 @@ export const PersonNode = ({id, data, selected}) => {
         setNodes(getNodes().map(nodo => {
             if(nodo.id === id){
                 nodo.data = {
-                    title: title,
-                    category: category,
-                    description: description
+                    title,
+                    category,
+                    description
                 };
             }
             return nodo;
