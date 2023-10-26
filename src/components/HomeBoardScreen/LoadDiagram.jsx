@@ -37,7 +37,7 @@ export const LoadDiagram = ({
 			<span>
 				<button
 					onClick={handleClickEliminar}
-					className='border border-black rounded-full px-2 text-xs'>
+					className='border border-black rounded-full px-2 text-xs hover:bg-red-400'>
 					Eliminar
 				</button>
 			</span>

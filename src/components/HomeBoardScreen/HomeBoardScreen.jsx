@@ -5,6 +5,7 @@ import { NewDiagramButton } from './NewDiagramButton';
 
 export const HomeBoardScreen = () => {
 	const uid = useSelector(state => state.auth.uid);
+	console.log(uid);
 	const data = useFetchProjects(uid);
 
 	return (
@@ -19,7 +20,7 @@ export const HomeBoardScreen = () => {
 			<hr className='m-3' />
 
 			<div className='grid grid-cols-3 gap-4'>
-				{data.map(project => (
+				{data?.map(project => (
 					<LoadDiagram key={project.id} {...project} />
 				))}
 			</div>
