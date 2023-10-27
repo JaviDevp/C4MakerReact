@@ -14,7 +14,7 @@ export const LoadDiagram = ({
 	};
 
 	return (
-		<div className='m-3 p-3 border border-black rounded-md flex justify-between'>
+		<div className='m-3 p-3 border border-slate-500 rounded-md flex justify-between bg-slate-50'>
 			<Link to={`/diagram/${id}`} className='grid grid-cols-8'>
 				<div className='grid justify-items-center col-span-1 border-r mr-2 '>
 					<span className='text-xl	text-slate-900	font-semibold '>{id}</span>
@@ -37,7 +37,7 @@ export const LoadDiagram = ({
 			<span>
 				<button
 					onClick={handleClickEliminar}
-					className='border border-black rounded-full px-2 text-xs hover:bg-red-400'>
+					className='border border-black rounded-full px-2 py-1 text-xs font-medium bg-red-300 hover:bg-red-400'>
 					Eliminar
 				</button>
 			</span>
