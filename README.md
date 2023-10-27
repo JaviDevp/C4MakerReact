@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# C4 Maker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+C4 Maker es una aplicación web colaborativa desarrollada con React que facilita la creación de modelos C4 de manera colaborativa con otras personas. Utiliza tecnologías como React, Firebase para autenticación, Redux, Socket.io y Tailwind CSS.
 
-## Available Scripts
+## Tecnologías Utilizadas
 
-In the project directory, you can run:
+- [React](https://es.reactjs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Redux](https://redux.js.org/)
+- [Socket.io](https://socket.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-### `npm start`
+## Funcionalidades Clave
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Colaboración en tiempo real en la creación de modelos C4.
+- Autenticación de usuarios a través de Firebase.
+- Uso de Redux para el manejo del estado de la aplicación.
+- Estilos y diseño de interfaz con Tailwind CSS.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Capturas de Pantalla
 
-### `npm test`
+![1](https://github.com/JaviDevp/C4MakerReact/assets/65985590/c9819a85-c497-4be4-8a62-913e1443a5b0)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![2](https://github.com/JaviDevp/C4MakerReact/assets/65985590/349ed8bd-0bb9-4247-aa6c-d0a9951a3a75)
 
-### `npm run build`
+## Instalación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clona el repositorio:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   git clone https://github.com/tu-usuario/c4-maker.git
+   ```
 
-### `npm run eject`
+2. Ingresa al directorio del proyecto:
+   ```bash
+   cd c4-maker
+   ```
+3. Instala las dependencias:
+   ```bash
+   cd c4-maker
+   ```
+4. Configura las credenciales de Firebase en el archivo de configuración.
+5. Inicia el proyecto:
+   ```bash
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Nota: La parte del backend se encuentra en otro repositorio. Asegúrate de tener acceso al backend o seguir las instrucciones correspondientes para configurarlo adecuadamente. Lo puedes encontrar [aquí](https://github.com/JaviDevp/C4Maker-Server).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contacto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Correo Electrónico: javiervidal.dev@gmail.com
+- LinkedIn: [/in/javier-vidal-dev/](https://www.linkedin.com/in/javier-vidal-dev/)
+- GitHub: [JaviDevp](https://github.com/JaviDevp)
