@@ -30,7 +30,7 @@ Para ejecutar este proyecto en tu entorno local, sigue estos pasos:
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/c4-maker.git
+   git clone https://github.com/JaviDevp/C4MakerReact.git
    ```
 
 2. Ingresa al directorio del proyecto:
